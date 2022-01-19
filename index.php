@@ -64,7 +64,6 @@
             echo '<p class="pubdate">' . $item->pubDate . '</p>';
             echo '<p class="title"><a href="'. $item->link .'">' . $item->title . "</a></p>";
             echo '<img src="'.$item->children('media', TRUE).'">';
-            echo "<p class='desc'>" . $item->description . "</p>";
         } 
         ?>
     </div>
