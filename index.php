@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <style type="text/css">
         body
         {
         width:100%;
@@ -55,11 +55,15 @@
 <div id="wrapper">
     <div id="feed_div">
         <?php
-        $rss = simplexml_load_file('https://note.com/intersectbylexus/rss');
+        $url = "https://note.com/intersectbylexus/rss";
+        $xsourcefile = str_replace("media:thumbnail","thumbnail",$url);
+        $rss = simplexml_load_file($xsourcefile);
         echo '<h2>'. $rss->channel->title . '</h2>';	
         foreach ($rss->channel->item as $item) 
         {
+            echo '<p class="pubdate">' . $item->pubDate . '</p>';
             echo '<p class="title"><a href="'. $item->link .'">' . $item->title . "</a></p>";
+            echo '<img src="'.$item->children('media', TRUE).'">';
             echo "<p class='desc'>" . $item->description . "</p>";
         } 
         ?>
